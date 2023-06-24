@@ -1,0 +1,19 @@
+body {
+    background-image: url('https://th.bing.com/th/id/OIP.Dl1sAot_PBiptR1NqdV3JwHaEo?pid=ImgDet&rs=1');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+} 
+.nav-link{
+    width: 20%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+    color: #fff;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}

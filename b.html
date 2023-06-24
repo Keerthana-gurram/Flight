@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booked Details</title>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('img/plane3.1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+      color: white;
+    }
+    
+    .booking-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .booking-details {
+      margin: 20px 0;
+      color: white;
+    }
+    
+    .booking-details p {
+      margin: 5px 0;
+    }
+    
+    .confirm-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Booked Flight Details</h1>
+
+  <div class="booking-container">
+    <div class="booking-details">
+      <p><strong>Flight Number:</strong> <span id="flight-number"></span></p>
+      <p><strong>Departure:</strong> <span id="departure"></span></p>
+      <p><strong>Destination:</strong> <span id="destination"></span></p>
+      <p><strong>Date:</strong> <span id="date"></span></p>
+      <p><strong>Price:</strong> <span id="price"></span></p>
+    </div>
+
+    <button class="confirm-button">Confirm Booking</button>
+  </div>
+
+  <script>
+    // JavaScript code
+    var confirmButton = document.querySelector('.confirm-button');
+
+    // Event listener for confirm button
+    confirmButton.addEventListener('click', function() {
+      // Show confirmation message
+      alert('Booking confirmed!');
+
+      // You can perform additional actions here, such as saving the booking details to a database.
+    });
+
+    var flightNumber = document.getElementById('flight-number');
+    var departure = document.getElementById('departure');
+    var destination = document.getElementById('destination');
+    var date = document.getElementById('date');
+    var price = document.getElementById('price');
+
+    // Get the URL parameters
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+
+    // Set the booked flight details
+    flightNumber.textContent = urlParams.get('flightNumber');
+    departure.textContent = urlParams.get('departure');
+    destination.textContent = urlParams.get('destination');
+    date.textContent = urlParams.get('date');
+    price.textContent = urlParams.get('price');
+  </script>
+</body>
+</html>

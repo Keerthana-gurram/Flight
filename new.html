@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flight Details</title>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: white;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('img/plane3.12.jpg');
+      color: white;
+    }
+    
+    .flight-container {
+      display: inline-block;
+      width: 300px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #222;
+    }
+    
+    .flight-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .flight-info img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    
+    .flight-info p {
+      margin: 0;
+    }
+    
+    .book-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <label for="from-input">From:</label>
+  <input type="text" id="from-input">
+  
+  <label for="to-input">To:</label>
+  <input type="text" id="to-input">
+  
+  <button id="filter-button">Filter</button>
+
+  <div id="flight-data-container"></div>
+
+  <script>
+    // JavaScript code
+    var flightDataContainer = document.getElementById('flight-data-container');
+    var fromInput = document.getElementById('from-input');
+    var toInput = document.getElementById('to-input');
+    var filterButton = document.getElementById('filter-button');
+
+    // Fetch and parse the CSV file
+    fetch('newdata.csv')
+      .then(response => response.text())
+      .then(data => {
+        // Convert CSV to array of objects
+        var flights = parseCSV(data);
+        var filteredFlights = flights;
+
+        // Function to filter flights based on "From" and "To" inputs
+        function filterFlights() {
+          var fromValue = fromInput.value.toLowerCase();
+          var toValue = toInput.value.toLowerCase();
+
+          filteredFlights = flights.filter(function(flight) {
+            var origin = flight.Origin.toLowerCase();
+            var destination = flight.Destination.toLowerCase();
+
+            return origin.includes(fromValue) && destination.includes(toValue);
+          });
+
+          displayFlights(filteredFlights);
+        }
+
+        // Function to display flights
+        function displayFlights(flights) {
+          flightDataContainer.innerHTML = '';
+
+          flights.forEach(flight => {
+            var flightContainer = document.createElement('div');
+            flightContainer.className = 'flight-container';
+
+            var flightInfo = document.createElement('div');
+            flightInfo.className = 'flight-info';
+
+            var flightImage = document.createElement('img');
+            flightImage.src = 'img/logo.png';
+            flightImage.alt = 'Flight Image';
+
+            var flightDetails = document.createElement('div');
+            flightDetails.className = 'flight-details';
+
+            var origin = document.createElement('p');
+            origin.textContent = 'Origin: ' + flight.Origin;
+
+            var destination = document.createElement('p');
+            destination.textContent = 'Destination: ' + flight.Destination;
+
+            var company = document.createElement('p');
+            company.textContent = 'Company: ' + flight.Company;
+
+            var departureTime = document.createElement('p');
+            departureTime.textContent = 'Departure Time: ' + flight['Departure Time'];
+
+            var arrivalTime = document.createElement('p');
+            arrivalTime.textContent = 'Arrival Time: ' + flight['Arrival Time'];
+
+            var durationTime = document.createElement('p');
+            durationTime.textContent = 'Duration Time: ' + flight['Duration Time'];
+
+            var flightPrice = document.createElement('p');
+            flightPrice.textContent = 'Flight Price:' + flight['Flight Price'];
+
+            var date = document.createElement('p');
+            date.textContent = 'Date: ' + flight.Date;
+
+            var cabinClass = document.createElement('p');
+            cabinClass.textContent = 'Cabin Class: ' + flight['Cabin Class'];
+
+            flightDetails.appendChild(origin);
+            flightDetails.appendChild(destination);
+            flightDetails.appendChild(company);
+            flightDetails.appendChild(departureTime);
+            flightDetails.appendChild(arrivalTime);
+            flightDetails.appendChild(durationTime);
+            flightDetails.appendChild(flightPrice);
+            flightDetails.appendChild(date);
+            flightDetails.appendChild(cabinClass);
+
+            flightInfo.appendChild(flightImage);
+            flightInfo.appendChild(flightDetails);
+
+            var bookButton = document.createElement('button');
+            bookButton.className = 'book-button';
+            bookButton.textContent = 'Book Now';
+
+            // Event listener for book button
+            bookButton.addEventListener('click', function() {
+              // Get the flight details
+              var bookedFlightNumber = flight['Flight number'];
+              var bookedDeparture = flight.Origin;
+              var bookedDestination = flight.Destination;
+              var bookedDate = flight.Date;
+              var bookedPrice = flight['Flight Price'];
+
+              // Redirect to the book.html page with URL parameters
+              var url = 'b.html' +
+                '?flightNumber=' + encodeURIComponent(bookedFlightNumber) +
+                '&departure=' + encodeURIComponent(bookedDeparture) +
+                '&destination=' + encodeURIComponent(bookedDestination) +
+                '&date=' + encodeURIComponent(bookedDate) +
+                '&price=' + encodeURIComponent(bookedPrice);
+
+              window.location.href = url;
+            });
+
+            flightContainer.appendChild(flightInfo);
+            flightContainer.appendChild(bookButton);
+
+            flightDataContainer.appendChild(flightContainer);
+          });
+        }
+
+        // Initial display of flights
+        displayFlights(filteredFlights);
+
+        // Event listener for filter button
+        filterButton.addEventListener('click', filterFlights);
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+
+    // Function to parse CSV data into an array of objects
+    function parseCSV(csv) {
+      var lines = csv.split('\n');
+      var headers = lines[0].split(',');
+      var flights = [];
+
+      for (var i = 1; i < lines.length; i++) {
+        var currentLine = lines[i].split(',');
+        var flight = {};
+
+        for (var j = 0; j < headers.length; j++) {
+          flight[headers[j]] = currentLine[j];
+        }
+
+        flights.push(flight);
+      }
+
+      return flights;
+    }
+  </script>
+</body>
+</html>

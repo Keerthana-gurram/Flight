@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home | Flight</title>
+    <script type="text/javascript" src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+    <section class="section first-section" >
+        <div class="banner-div">
+            <div class="banner">
+                <h1 class="banner-text">Book National and International Flight Tickets</h1>
+            </div>
+        </div>
+        <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.typekit.net/cav5lva.css">
+  <link rel="stylesheet" href="css/layout_style.css">
+  <link rel="icon" type="image/ico" href="img/favicon.ico">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/layout.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="layout.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="b.html">My Bookings</a>
+          </li>
+        </ul>
+        <div class="search-flight">
+            <div class="container">
+                <form class="search-flight-form" action="{% url 'flight' %}" onsubmit="return flight_search()">
+                    <div class="align-items-center">
+                        <div class="search-flight-form-data">
+                            <div class="input-row" style="display: flex;">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input trip-type" id="one-way" name="TripType" value="1" checked>One-way
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input trip-type" id="round-trip" name="TripType" value="2" {% if trip_type == '2' %}checked{% endif %}>Round Trip
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <form action="new.html" method="get">
+                                    <label for="from">From: </label>
+                                    <select name="SeatClass" id="SeatType" class="form-control mr-sm-2 selectpicker">
+                                    <option value="Delhi" {% if seat == 'Delhi' %}selected{% endif %}>DELHI</option>
+                                    <option value="japan" {% if seat == 'japan' %}selected{% endif %}>JAPAN</option>
+                                    <option value="Mumbai" {% if seat == 'mumbai' %}selected{% endif %}>MUMBAI</option>
+                                    <option value="singapore" {% if seat == 'singapore' %}selected{% endif %}>SINGAPORE</option>
+                                    <option value="Us" {% if seat == 'us' %}selected{% endif %}>UNITED STATE</option>
+                                    <option value="hyderabad" {% if seat == 'hyderabad' %}selected{% endif %}>HYDERABAD</option>
+                                    <option value="bangkok" {% if seat == 'bagkok' %}selected{% endif %}>BANGKOK</option>
+                                    <option value="germany" {% if seat == 'germany' %}selected{% endif %}>GERMANY</option>
+                                    <option value="Vijaywada" {% if seat == 'Vijaywada' %}selected{% endif %}>VIJAYWADA</option>
+                                    <option value="Banglore" {% if seat == 'banglore' %}selected{% endif %}>BANGLORE</option>
+                                </select>
+                                
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <label for="To">To </label>
+                                <select name="SeatClass" id="SeatType" class="form-control mr-sm-2 selectpicker">
+                                    <option value="Delhi" {% if seat == 'Delhi' %}selected{% endif %}>DELHI</option>
+                                    <option value="japan" {% if seat == 'japan' %}selected{% endif %}>JAPAN</option>
+                                    <option value="Mumbai" {% if seat == 'mumbai' %}selected{% endif %}>MUMBAI</option>
+                                    <option value="singapore" {% if seat == 'singapore' %}selected{% endif %}>SINGAPORE</option>
+                                    <option value="Us" {% if seat == 'us' %}selected{% endif %}>UNITED STATE</option>
+                                    <option value="hyderabad" {% if seat == 'hyderabad' %}selected{% endif %}>HYDERABAD</option>
+                                    <option value="bangkok" {% if seat == 'bagkok' %}selected{% endif %}>BANGKOK</option>
+                                    <option value="germany" {% if seat == 'germany' %}selected{% endif %}>GERMANY</option>
+                                    <option value="Vijaywada" {% if seat == 'Vijaywada' %}selected{% endif %}>VIJAYWADA</option>
+                                    <option value="Banglore" {% if seat == 'banglore' %}selected{% endif %}>BANGLORE</option>
+                                </select>
+                                
+                            </div>
+                            <div class="input-row">
+                                <label for="depart_date">Departure Date: </label>
+                                <input type="date" name="DepartDate" min="{{min_date}}" max="{{max_date}}" id="depart_date" placeholder="Date" class="form-control mr-sm-2" value="{{depart_date}}">
+                            </div>
+                            <div class="input-row">
+                                <label for="return_date">Return Date: </label>
+                                <input type="date" name="ReturnDate" min="{{min_date}}" max="{{max_date}}" id="return_date" placeholder="Date" class="form-control mr-sm-2" value="{{return_date}}" >
+                            </div>
+                            <div class="input-row">
+                                <label for="seat_class">Class: </label>
+                                <select name="SeatClass" id="SeatType" class="form-control mr-sm-2 selectpicker">
+                                    <option value="economy" {% if seat == 'economy' %}selected{% endif %}>Economy</option>
+                                    <option value="business" {% if seat == 'business' %}selected{% endif %}>Business</option>
+                                    <option value="first" {% if seat == 'first' %}selected{% endif %}>First</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <a class="navi-link" href="new.html">SearchFlights</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- Add the details section below the form -->
+            </div>
+        </div>
+    </section>
+    <section class="section second-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb_70">
+                        <h2>Popular Destination</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row popular_destinations">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination" onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_Italy'">
+                        <div class="thumb">
+                            <img src="img/destination/1.png" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">Italy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination" onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_France'">
+                        <div class="thumb">
+                            <img src="img/destination/2.png" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">France</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination" onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_Japan'">
+                        <div class="thumb">
+                            <img src="img/destination/3.png" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">Japan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination" onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_Nepal">
+                        <div class="thumb">
+                            <img src="img/destination/4.png" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">nepal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination" onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_the_Maldives'">
+                        <div class="thumb">
+                            <img src="img/destination/5.png" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">Maldives</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>

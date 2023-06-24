@@ -1,0 +1,77 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .user-box {
+    width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:#ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .user-box img {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .user-box h3 {
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .star {
+    color:black;
+  }
+  
+  .center {
+    text-align: center;
+  }
+  body {
+    background-image: url('https://cauldronsandcupcakes.com/wp-content/uploads/2016/07/plane-airplane-airliner-passenger-sky-sky-cumulus-clouds-clouds-flight-flight-aircraft-wing-wing-morning-bright-sun-beautiful-background-blur-bokeh-wallpaper.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+} 
+.index{
+  padding: 10px 20px;
+    color: #fff;
+    background-color:red;
+    border: none;
+    border-radius: 20px;
+    height:10px;
+    padding: 15px 32px;
+    text-shadow: 50px;
+}   
+  
+    
+    
